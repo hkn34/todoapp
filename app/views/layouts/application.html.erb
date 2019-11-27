@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- This is the views layout template that is used across the web application -->
   <head>
     <title>Todoapp</title>
     <%= csrf_meta_tags %>
@@ -10,11 +11,13 @@
   </head>
 
   <body>
+    <!-- Display Flash messages if there are any -->
     <% flash.each do |name, msg| %>
       <ul>
         <li><%= msg %></li>
       </ul>
     <% end %>
+    <!-- All other views will be rendered by the yield tag -->
     <%= yield %>
   </body>
 </html>

@@ -1,10 +1,17 @@
+<!--
+This is the view that gets rendered when '/todos/:id' gets requested
+-->
 <h1>Showing a Todo</h1>
 
 <p>
+  <!-- Display Todo name -->
   name: <%= @todo.name %>
 </p>
 <p>
+  <!-- Display Todo description -->
   description: <%= @todo.description %>
 </p>
+<!-- Link to '/todos/:id/edit' -->
 <%= link_to "Edit this Todo", edit_todo_path(@todo) %>
+<!-- Link to '/todos' -->
 <%= link_to "Back to todos listng", todos_path %>
