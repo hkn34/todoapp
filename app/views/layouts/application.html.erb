@@ -11,12 +11,8 @@
   </head>
 
   <body>
-    <!-- Display Flash messages if there are any -->
-    <% flash.each do |name, msg| %>
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-    <% end %>
+    <!-- Render flash messages from partial -->
+    <%= render "layouts/messages" %>
     <!-- All other views will be rendered by the yield tag -->
     <%= yield %>
   </body>

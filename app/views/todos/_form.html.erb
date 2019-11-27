@@ -1,0 +1,35 @@
+<!-- Display error messages if there are any -->
+<% if @todo.errors.any? %>
+  <h2>The following errors prevented the todo from being saved</h2>
+  <ul>
+    <% @todo.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<!-- Create form where user can update information about the todo -->
+<%= form_for @todo do |f| %>
+  <p>
+    <!-- Create a label called 'Name' -->
+    <%= f.label :name %>
+    <!-- Use a text field to collect updated todo name data -->
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <!-- Create a label called 'Description' -->
+    <%= f.label :description %><br>
+    <!-- Use a text area(larger than a text field) to collect updated todo description data -->
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <!--
+    Create a 'Update todo' button to submit todo data in a PUT/PATCH request
+    that routes to '/todos/:id' which calls 'todos#update'
+    -->
+    <%= f.submit %>
+  </p>
+<% end %>
+<!-- Link back to '/todos' -->
+<%= link_to "Back to todos listing", todos_path %>

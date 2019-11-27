@@ -4,6 +4,10 @@ class TodosController < ApplicationController
   # As long as naming convention is followed, Rails knows what view to call upon based on what action
   # is called. Because this is the 'Todos Controller', Rails checks the views folder for
   # a 'todos' folder and selects the view with the same name as the action given.
+
+  # Call set_todo method before the following array of actions
+  before_action :set_todo, only: [:edit, :update, :show, :destroy]
+
   def new
     # This renders 'views/todos/new.html.erb
     # Instatiate a new Todo object to interact with in 'views/todos/new.html.erb'
@@ -29,17 +33,14 @@ class TodosController < ApplicationController
 
   def show
     # This renders 'views/todos/show.html.erb
-    @todo = Todo.find(params[:id])
   end
 
   def edit
     # This renders 'views/todos/edit.html.erb
-    @todo = Todo.find(params[:id])
   end
 
   def update
     # This action is performed from a PUT/PATCH request and therefore needs to be redirected
-    @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       flash[:notice] = "Todo was successfully updated!"
       # If the todo is successfully updated, redirect to render '/todos/show.html.erb'
@@ -59,8 +60,6 @@ class TodosController < ApplicationController
 
   def destroy
     # This action is performed from a DELETE request and therefore needs to be redirected
-    # Find Todo
-    @todo = Todo.find(params[:id])
     # Remove Todo from database
     @todo.destroy
     flash[:notice] = "Todo was deleted successfully"
@@ -70,6 +69,11 @@ class TodosController < ApplicationController
   end
 
   private
+  # Private method that will find Todo and set it to instance variable
+    def set_todo
+      @todo = Todo.find(params[:id])
+    end
+
   # Private method to encapsulate the permissable parameters(Strong Parameter)
     def todo_params
       params.require(:todo).permit(:name, :description)
