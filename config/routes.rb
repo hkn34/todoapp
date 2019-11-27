@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   ##GET	      /todos/:id     	todos#show   	display a specific todo
   ##GET	      /todos/:id/edit	todos#edit   	return an HTML form for editing a todo
   ##PATCH/PUT	/todos/:id    	todos#update	update a specific todo
-  ##DELETE  	/todos/:id    	todos#delete	delete a specific todo
+  ##DELETE  	/todos/:id    	todos#destroy	delete a specific todo
   resources :todos
 end

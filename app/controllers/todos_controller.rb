@@ -57,6 +57,18 @@ class TodosController < ApplicationController
     @todos = Todo.all
   end
 
+  def destroy
+    # This action is performed from a DELETE request and therefore needs to be redirected
+    # Find Todo
+    @todo = Todo.find(params[:id])
+    # Remove Todo from database
+    @todo.destroy
+    flash[:notice] = "Todo was deleted successfully"
+    # If the todo is successfully deleted, redirect to render '/todos/index.html.erb'
+    # for that todo and 'flash' a notice letting the user know it was successful
+    redirect_to todos_path
+  end
+
   private
   # Private method to encapsulate the permissable parameters(Strong Parameter)
     def todo_params
