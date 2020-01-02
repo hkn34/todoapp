@@ -3,4 +3,6 @@ class Todo < ApplicationRecord
   validates :name, presence: true
   # Validates that the Todo being created has a description
   validates :description, presence: true
+
+  belongs_to :user
 end
